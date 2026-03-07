@@ -1,0 +1,5 @@
+datasets
+regex
+transformers
+tokenizers
+tqdm
