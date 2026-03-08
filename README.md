@@ -104,7 +104,7 @@ amnlp/
 │  ├─ build_stopwords.py
 │  └─ build_dictionary.py
 ├─ data/
-│  └─ corpus.txt
+│  └─ corpus.txt/ will be created once the data download is complete.
 ├─ tests/
 │  ├─ test_tokenizer.py
 │  └─ test_pipeline.py
