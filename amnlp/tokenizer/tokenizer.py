@@ -1,6 +1,6 @@
 import regex as re
 
-TOKEN_PATTERN = re.compile(r"[\p{Script=Ethiopic}]+")
+TOKEN_PATTERN = re.compile(r"[\p{Script=Ethiopic}\d]+")
 
 class AmharicTokenizer:
 
