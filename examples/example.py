@@ -8,8 +8,6 @@ text = """
 ቴክኖሎጂ በዓለም ላይ በፍጥነት እየተሻሻለ ነው።
 """
 
-
-
 processor = AmharicProcessor()
 
 result = processor.process(text)
