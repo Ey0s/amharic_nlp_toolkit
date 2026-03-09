@@ -1,26 +1,21 @@
 class AmharicStemmer:
+    noun_suffixes = ["ዎች", "ች", "ን", "ህ", "ሽ", "ዋ"]
 
-    suffixes = [
-        "ዎች",
-        "ች",
-        "ን",
-        "ህ",
-        "ሽ",
-        "ዋ"
-    ]
-
-    def stem(self, tokens):
-
+    def stem(self, tokens, return_mapping=False):
         stems = []
+        mapping = {}
 
         for token in tokens:
-
-            for s in self.suffixes:
-
-                if token.endswith(s):
-
-                    token = token[:-len(s)]
-
+            original = token
+            changed = True
+            while changed and len(token) > 3:
+                changed = False
+                for s in self.noun_suffixes:
+                    if token.endswith(s):
+                        token = token[:-len(s)]
+                        changed = True
+                        break
             stems.append(token)
+            mapping[original] = token
 
-        return stems
+        return mapping if return_mapping else stems
