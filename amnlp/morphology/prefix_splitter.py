@@ -1,6 +1,5 @@
 # Common Amharic prefixes
-PREFIXES = ["በ", "ከ", "ለ", "ወደ", "የ"]
-
+PREFIXES = ["በ", "ከ", "ለ", "ወደ", "የ", "በስተ", "በት"]
 
 def split_prefix(word):
     """
