@@ -3,13 +3,12 @@ from amnlp.normalization.normalizer import AmharicNormalizer
 from amnlp.stopwords.stopwords import StopwordRemover
 from amnlp.stemmer.stemmer import AmharicStemmer
 
-# Only noun/adjective prefixes
 PREFIXES = ["በ", "ከ", "ለ", "ወደ", "የ", "በስተ", "በት"]
 
 def split_prefix(word):
     """
     Split noun/adjective prefixes.
-    Do NOT split verb conjugation prefixes (እ, ይ, ተ)
+    Do NOT split verb conjugation prefixes (እ, ይ, ተ) as they are integral to the verb form.
     """
     for prefix in PREFIXES:
         if word.startswith(prefix) and len(word) > len(prefix) + 2:
