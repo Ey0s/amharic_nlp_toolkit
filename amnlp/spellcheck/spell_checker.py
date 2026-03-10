@@ -3,7 +3,7 @@ import os
 class SpellChecker:
 
     def __init__(self):
-
+        """Load the Amharic dictionary from the resources folder"""
         path = os.path.join(
             os.path.dirname(__file__),
             "../resources/amharic_dict.txt"
