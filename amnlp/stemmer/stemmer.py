@@ -1,5 +1,5 @@
 class AmharicStemmer:
-    noun_suffixes = ["ዎች", "ች", "ን", "ህ", "ሽ", "ዋ"]
+    noun_suffixes = ["ዎች", "ች", "ን", "ህ", "ሽ", "ዋ","ዎቻችሁ","ሚ"]
 
     def stem(self, tokens, return_mapping=False):
         stems = []
