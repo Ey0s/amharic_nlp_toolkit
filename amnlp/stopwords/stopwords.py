@@ -10,8 +10,9 @@ class StopwordRemover:
         )
 
         with open(path, encoding="utf8") as f:
-
-            self.stopwords = set(f.read().splitlines())
+            # Normalize resource lines so trailing spaces or blank lines do not
+            # prevent matches during token filtering.
+            self.stopwords = {line.strip() for line in f if line.strip()}
 
     def remove(self, tokens):
 
