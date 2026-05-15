@@ -117,6 +117,8 @@ amnlp/
 
 ## Installation
 
+`amnlp` is installed from this source tree, not from PyPI. If you run `pip install amlp` or `pip install amnip`, pip will fail because those names do not exist; the project name here is `amnlp`.
+
 ### 1. Clone and enter the project
 ```bash
 git clone https://github.com/Ey0s/amharic_nlp_toolkit.git
@@ -142,7 +144,33 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
+If you want a normal install instead of editable mode, use `pip install .` from the project root after cloning it.
+
 ## Quick Start
+
+## Publishing from GitHub Actions
+
+This repository includes a GitHub Actions workflow at [.github/workflows/workflow.yml](.github/workflows/workflow.yml#L1) that builds the package and publishes it to PyPI when you push a tag matching `v*` (for example `v0.1.0`).
+
+Setup steps before tagging:
+
+- **Create a PyPI API token**: Sign in to https://pypi.org, go to your account -> API tokens -> Create token for project `amnlp` (or an "Upload token" scoped to the project). Copy the token value.
+- **Add repository secret**: In your GitHub repo, go to Settings -> Secrets -> Actions and add a new secret named `PYPI_API_TOKEN` with the token value from PyPI.
+- **(Optional) Create environment**: The workflow uses a GitHub Actions environment called `pypi`. Create that under Settings -> Environments and configure required reviewers if desired.
+
+Triggering a publish:
+
+1. Update the version in `setup.py` and/or `amnlp/version.py`.
+2. Create an annotated tag and push it:
+
+```bash
+git tag -a v0.1.0 -m "Release v0.1.0"
+git push origin v0.1.0
+```
+
+The workflow will run on the pushed tag and, if successful, upload the built distributions to PyPI using the `PYPI_API_TOKEN` secret.
+
+If you'd like, I can also add a small release checklist or automate the version bump and tagging via a Makefile or script.
 
 ### End-to-end processor
 ```python
