@@ -10,7 +10,7 @@ setup(
         "datasets",
         "transformers"
     ],
-    author="Your Name",
+    author="Eyosyas Yoseph",
     description="Amharic NLP Library",
     python_requires=">=3.8",
 )
