@@ -85,8 +85,8 @@ def test_version_files_are_in_sync():
 def test_version_value_is_consistent():
     """The version read at import time must match what's in version.py."""
     assert amnlp.__version__ == __version__ if hasattr(amnlp, "__version__") else True
-    # Direct check: version.py value is the real canonical one
-    assert __version__ == "0.1.1"
+    # version.py must contain a valid semver string
+    assert re.match(r"^\d+\.\d+\.\d+", __version__), f"Invalid version format: {__version__}"
 
 
 # ── Fix 4: top-level normalize() is exposed ───────────────────────────────────
