@@ -12,3 +12,6 @@ def stem(tokens):
 
 def remove_stopwords(tokens):
     return StopwordRemover().remove(tokens)
+
+def normalize(text):
+    return AmharicNormalizer().normalize(text)

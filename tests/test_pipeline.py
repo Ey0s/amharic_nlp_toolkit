@@ -9,5 +9,8 @@ def test_stemmer_trims_common_verb_suffix():
 def test_pipeline_returns_intermediate_stages():
 	result = AmharicProcessor().process("ተማሪዎች በትምህርት ቤት ይማራሉ", return_structure=True)
 
-	assert result["tokens"] == ["ተማሪዎች", "ትምህርት", "ቤት", "ይማራሉ"]
+	# prefix_splitter splits "በትምህርት" into ["በ", "ትምህርት"]
+	assert result["tokens"] == ["ተማሪዎች", "በ", "ትምህርት", "ቤት", "ይማራሉ"]
+	# "በ" is a stopword so it's filtered before stemming
+	assert result["filtered_tokens"] == ["ተማሪዎች", "ትምህርት", "ቤት", "ይማራሉ"]
 	assert result["stems"] == ["ተማሪ", "ትምህርት", "ቤት", "ይማራ"]

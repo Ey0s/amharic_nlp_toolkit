@@ -22,10 +22,13 @@ class AmharicNormalizer:
     PUNCTUATION_PATTERN = re.compile(r"[።፣፤፥!?.,]")
 
     def normalize(self, text):
-
+        """Apply character substitutions only. Sentence boundaries are preserved."""
         for src, target in self.NORMALIZATION_RULES.items():
             text = text.replace(src, target)
+        return text
 
+    def normalize_and_strip(self, text):
+        """Apply character substitutions AND remove punctuation. Use for word tokenization."""
+        text = self.normalize(text)
         text = self.PUNCTUATION_PATTERN.sub("", text)
-
         return text

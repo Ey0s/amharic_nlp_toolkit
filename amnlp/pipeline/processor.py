@@ -2,25 +2,7 @@ from amnlp.tokenizer.tokenizer import AmharicTokenizer
 from amnlp.normalization.normalizer import AmharicNormalizer
 from amnlp.stopwords.stopwords import StopwordRemover
 from amnlp.stemmer.stemmer import AmharicStemmer
-
-PREFIXES = ["በ", "ከ", "ለ", "ወደ", "የ", "በስተ", "በት"]
-
-def split_prefix(word):
-    """
-    Split noun/adjective prefixes.
-    Do NOT split verb conjugation prefixes (እ, ይ, ተ) as they are integral to the verb form.
-    """
-    for prefix in PREFIXES:
-        if word.startswith(prefix) and len(word) > len(prefix) + 2:
-            return [word[len(prefix):]]
-    return [word]
-
-def split_tokens(tokens):
-    """Apply prefix splitting to a list of tokens"""
-    result = []
-    for token in tokens:
-        result.extend(split_prefix(token))
-    return result
+from amnlp.morphology.prefix_splitter import split_tokens
 
 class AmharicProcessor:
 
@@ -33,8 +15,8 @@ class AmharicProcessor:
     def process(self, text, return_structure=False):
         """
         Full NLP pipeline:
-        1. Normalize
-        2. Tokenize
+        1. Normalize (character substitutions only — sentence boundaries preserved)
+        2. Tokenize (tokenizer handles punctuation stripping internally)
         3. Split noun/adjective prefixes
         4. Remove stopwords
         5. Stem nouns/adjectives

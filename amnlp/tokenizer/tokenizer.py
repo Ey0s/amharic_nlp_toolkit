@@ -9,6 +9,7 @@ class AmharicTokenizer:
         self.normalizer = AmharicNormalizer()
 
     def tokenize(self, text):
-        # Remove punctuation before tokenizing so tokens like "ነው።" become "ነው"
-        text = self.normalizer.normalize(text)
+        # Use normalize_and_strip so punctuation is removed before word extraction
+        # but sentence boundaries in the original text are not affected.
+        text = self.normalizer.normalize_and_strip(text)
         return TOKEN_PATTERN.findall(text)
